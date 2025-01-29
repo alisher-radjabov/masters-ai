@@ -46,3 +46,4 @@ AI is evolving rapidly, with advancements in generative AI, multimodal models, a
 
 👉 Illustration Idea: A futuristic concept of AI assisting humans in different domains.
 
+<img src="img/1.png">
