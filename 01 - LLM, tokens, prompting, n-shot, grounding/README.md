@@ -46,4 +46,9 @@ AI is evolving rapidly, with advancements in generative AI, multimodal models, a
 
 👉 Illustration Idea: A futuristic concept of AI assisting humans in different domains.
 
-<img src="img/1.png">
+<img src="img/1.png"><br />
+Here's the first illustration showing the relationship between AI, ML, and Deep Learning. I'll generate the next image now! 😊
+<img src="img/2.png"><br />
+Here's the second illustration showing how Machine Learning works. I'll now generate an image representing a neural network. Stay tuned! 😊
+<img src="img/3.png"><br />
+Here's the third illustration showing a simple neural network. Next, I'll generate an illustration of the AI model training process. Stay tuned! 😊
