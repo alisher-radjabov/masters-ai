@@ -2,11 +2,12 @@ import streamlit as st
 import sqlite3
 import requests
 import logging
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
-from langchain_community.document_loaders import TextLoader
+import json
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.llms import OpenAI
+from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
 
 # Configure logging
@@ -14,9 +15,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 class DataAgent:
-    def __init__(self, db_path="data.db", doc_path=None):
+    def __init__(self, db_path="data/data.db", doc_path=None):
         self.db_path = db_path
-        self.conn = sqlite3.connect(db_path)
+        self.conn = sqlite3.connect(db_path, check_same_thread=False)
         self.cursor = self.conn.cursor()
         self.retriever = None
 
@@ -38,14 +39,16 @@ class DataAgent:
         logging.info("Vector store setup complete.")
 
     def query_database(self, sql_query):
-        """Executes SQL queries and returns results."""
+        """Executes SQL queries safely and returns results."""
         logging.info("Executing SQL query: %s", sql_query)
         try:
+            if any(keyword in sql_query.lower() for keyword in ["drop", "delete", "update", "insert", "alter"]):
+                raise ValueError("Unsafe SQL query detected.")
             self.cursor.execute(sql_query)
             result = self.cursor.fetchall()
             logging.info("Query Result: %s", result)
             return result
-        except sqlite3.Error as e:
+        except (sqlite3.Error, ValueError) as e:
             logging.error("Database error: %s", e)
             return f"Database error: {e}"
 
@@ -68,14 +71,14 @@ class DataAgent:
         return response
 
     def call_external_api(self, endpoint, payload):
-        """Calls a 3rd party API to perform an action."""
+        """Calls a 3rd party API to perform an action with error handling."""
         logging.info("Calling external API: %s with payload: %s", endpoint, payload)
         try:
-            response = requests.post(endpoint, json=payload)
+            response = requests.post(endpoint, json=json.loads(payload))
             result = response.json()
             logging.info("API Response: %s", result)
             return result
-        except requests.RequestException as e:
+        except (requests.RequestException, json.JSONDecodeError) as e:
             logging.error("API call failed: %s", e)
             return f"API call failed: {e}"
 
@@ -93,7 +96,7 @@ class DataAgent:
             context += f"Document Result: {doc_result}\n"
 
         if use_api and api_endpoint:
-            api_result = self.call_external_api(api_endpoint, api_payload or {})
+            api_result = self.call_external_api(api_endpoint, api_payload or "{}")
             context += f"API Result: {api_result}\n"
 
         return self.query_llm(query, context)
@@ -113,7 +116,7 @@ st.sidebar.write("**Customer Satisfaction:** 92%")
 
 st.subheader("Query the Data")
 
-agent = DataAgent(db_path="data.db", doc_path="docs/sample.txt")
+agent = DataAgent(db_path="data/data.db", doc_path="docs/sample.txt")
 
 query = st.text_input("Enter your query:")
 use_db = st.checkbox("Use Database", value=True)
