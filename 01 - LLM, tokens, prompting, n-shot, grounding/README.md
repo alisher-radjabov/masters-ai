@@ -87,7 +87,7 @@ This AI and ML course offers a unique blend of structured learning and hands-on 
 Are you ready to embark on this AI learning journey? Let’s dive in and shape the future together!
 
 
-
+<img src="img/2.png" />
 
 
 Here’s a detailed prompt to generate an AI model for image creation:
