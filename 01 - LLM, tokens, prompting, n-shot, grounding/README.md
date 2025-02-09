@@ -1,5 +1,7 @@
 https://chatgpt.com/c/67a83bef-4fd4-800b-bc44-6295d9a7c3b6
 
+<img src="img/1.png" />
+
 The Future of Learning: AI and Machine Learning Course Overview
 
 Table of Contents
