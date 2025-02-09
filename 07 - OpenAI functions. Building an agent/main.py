@@ -73,7 +73,6 @@ CREATE TABLE "Salaries" (
 	PRIMARY KEY("Id")
 );
 
-PLEASE DO NOT USE ANY COLUMNS OTHER THAN THE ONES IN THE SCHEMA
 """
 
 def get_agent_response(user_input: str) -> str:
@@ -124,7 +123,7 @@ def get_agent_response(user_input: str) -> str:
         return f"An error occurred: {str(e)}"
 
 def main():
-    logging.info("Starting the salary query agent")
+    logging.info("Starting the agent")
     while True:
         user_input = input("\nAsk a question about the salary data (or 'quit' to exit): ")
         if user_input.lower() == 'quit':
@@ -134,7 +133,7 @@ def main():
         response = get_agent_response(user_input)
         print("\nResponse:", response)
     
-    logging.info("Shutting down the salary query agent")
+    logging.info("Shutting down the agent")
 
 if __name__ == "__main__":
     main()
