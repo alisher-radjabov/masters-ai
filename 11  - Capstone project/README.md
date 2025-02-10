@@ -10,7 +10,7 @@ The agent extracts relevant chunks using semantic search or SQL queries, ensurin
 A Streamlit UI added allowing users to input queries and choose whether to use the database or document retrieval
 
 Run: streamlit run /Users/alisher/University-Code/masters-ai/11  - Capstone project/main.py
-
+<img src="screenshots/0.png" />
 <img src="screenshots/1.png" />
 <img src="screenshots/2.png" />
 
