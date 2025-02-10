@@ -1,1 +1,0 @@
-So far, we've learned how to work with regular text files. However, sometimes data comes in a CSV format, and it's common for data professionals to retrieve required information and manipulate the content of CSV files.
