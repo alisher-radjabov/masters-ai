@@ -11,7 +11,9 @@ A Streamlit UI added allowing users to input queries and choose whether to use t
 
 Run: streamlit run /Users/alisher/University-Code/masters-ai/11  - Capstone project/main.py
 
-<img src="screenshots/1.png />
+<img src="screenshots/1.png" />
+<img src="screenshots/2.png" />
+
 Added functionality for the agent to call an external API and included corresponding UI elements in Streamlit. 
 
 A sidebar displaying business information, including company name, industry, sales, pending orders, and customer satisfaction.
@@ -21,4 +23,12 @@ Logs will be printed to the console for better debugging and monitoring.
 
 Added security countermeasures, including SQL injection prevention, 
 improved error handling for API calls, and JSON validation for API payloads.
+
+<img src="screenshots/3.png" />
+<img src="screenshots/4.png" />
+<img src="screenshots/5.png" />
+<img src="screenshots/6.png" />
+
+
+
 
