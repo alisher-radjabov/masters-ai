@@ -1,2 +1,1 @@
 openai==1.57.3
-python-dotenv==1.0.1
